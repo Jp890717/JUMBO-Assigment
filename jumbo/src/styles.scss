@@ -1,1 +1,68 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Variables
+$white: #ffffff;
+$primary-color: #eeb717;
+$base-font-size: 1rem;
+
+body {
+  background-color: $white;
+  font-size: $base-font-size;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 660px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  margin-bottom: 10px;
+}
+
+.col {
+  background-color: blue;
+  padding: 1rem 0;
+  flex-basis: 100%;
+}
+
+@media only screen and (min-width: 576px) {
+  .row {
+    flex-wrap: nowrap;
+  }
+
+  .col {
+    flex: 1;
+  }
+}
+
+//Button
+
+.btn {
+  font-weight: 700;
+  padding: 10px 30px;
+  height: 45px;
+  border-radius: 23px;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1),opacity .35s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: $base-font-size;
+  border: none;
+  touch-action: manipulation;
+
+  &:hover {
+    transform: scaleY(1.02) scaleX(1.04);
+    cursor: pointer;
+  }
+
+  &.btn-primary {
+    background-color: $primary-color;
+  }
+}

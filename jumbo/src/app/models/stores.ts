@@ -1,4 +1,4 @@
-export interface Store {
+export interface StoreList {
   addressName: string;
   city: string;
   collectionPoint: boolean;

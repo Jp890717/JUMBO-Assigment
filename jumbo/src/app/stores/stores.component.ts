@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {StoreService} from "../services/store.service";
-import {Select, Store} from '@ngxs/store';
-import {AddStores, StoreStateModel} from "../state/stores.state";
-import {Observable} from "rxjs";
+import {Store} from '@ngxs/store';
+import {AddStores} from "../state/stores.state";
+import {StoreList} from "../models/stores";
+
 
 @Component({
   selector: 'app-stores',
@@ -11,23 +12,30 @@ import {Observable} from "rxjs";
 })
 export class StoresComponent implements OnInit {
 
+  storeList: StoreList[] = [];
+  loading: boolean = true;
 
+  constructor(private storeService: StoreService, private store: Store) {
 
-  constructor(private storeService: StoreService, private store: Store) { }
+  }
 
 
 
 
   ngOnInit(): void {
+    this.getStores();
 
+  }
 
-    this.storeService.getStores().subscribe(res => {
-      this.store.dispatch(new AddStores(res))
+  private getStores() {
+    this.loading = true;
+    this.storeService.getStores().subscribe((res: StoreList[]) => {
+      this.store.dispatch(new AddStores(res));
+      this.storeList = res;
+      this.loading = false
+    }, error => {
+      this.loading = false;
     })
-
-    this.store.select(state => state.stores).subscribe(stores => {
-      console.log(stores);
-    });
   }
 
 }

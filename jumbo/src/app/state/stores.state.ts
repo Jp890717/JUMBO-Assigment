@@ -1,20 +1,15 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import {Store} from "../models/stores";
+import {StoreList} from "../models/stores";
 import {tap} from "rxjs";
 import {StoreService} from "../services/store.service";
 
 export interface StoreStateModel {
-  stores: Store[];
+  stores: StoreList[];
 }
 
 export class AddStores {
   static readonly type = '[Store] Add Store';
-  constructor(public payload: Store[]) {}
-}
-
-export class GetStores {
-  static readonly type = '[Store] Add Store';
-  constructor(public payload: Store[]) {}
+  constructor(public payload: StoreList[]) {}
 }
 
 @State<StoreStateModel>({
@@ -25,22 +20,11 @@ export class GetStores {
 })
 export class StoreState {
 
-  constructor(private storeService: StoreService) {}
+  constructor() {}
 
   @Selector()
   static getStores(state: StoreStateModel) {
     return state.stores;
-  }
-
-  @Action(GetStores)
-  getStores({ getState, setState }: StateContext<StoreStateModel>) {
-    return this.storeService.getStores().pipe(
-      tap((stores: Store[]) => {
-        setState({
-          stores
-        });
-      })
-    );
   }
 
   @Action(AddStores)
