@@ -22,3 +22,7 @@ export interface StoreList {
   type: string;
   uuid: string;
 }
+
+export interface Cities {
+  city: string
+}

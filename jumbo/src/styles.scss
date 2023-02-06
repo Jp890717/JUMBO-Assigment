@@ -2,49 +2,86 @@
 
 // Variables
 $white: #ffffff;
+$black: #000000;
 $primary-color: #eeb717;
 $base-font-size: 1rem;
 
 body {
   background-color: $white;
+  font-family: Calibri;
+  color: $black;
   font-size: $base-font-size;
   font-weight: 700;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  row-gap: 1rem;
+  margin: auto;
   width: 100%;
-  margin: 0 auto;
-  max-width: 660px;
+  max-width: 992px;
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 10px;
-  margin-bottom: 10px;
+.col-1 {
+  grid-column: span 1;
 }
 
-.col {
-  background-color: blue;
-  padding: 1rem 0;
-  flex-basis: 100%;
+.col-2 {
+  grid-column: span 2;
 }
 
-@media only screen and (min-width: 576px) {
-  .row {
-    flex-wrap: nowrap;
-  }
-
-  .col {
-    flex: 1;
-  }
+.col-3 {
+  grid-column: span 3;
 }
+
+.col-4 {
+  grid-column: span 4;
+}
+
+.col-5 {
+  grid-column: span 5;
+}
+
+.col-6 {
+  grid-column: span 6;
+}
+
+.col-7 {
+  grid-column: span 7;
+}
+
+.col-8 {
+  grid-column: span 8;
+}
+
+.col-9 {
+  grid-column: span 9;
+}
+
+.col-10 {
+  grid-column: span 10;
+}
+
+.col-11 {
+  grid-column: span 11;
+}
+
+.col-12 {
+  grid-column: span 12;
+}
+
 
 //Button
 
 .btn {
   font-weight: 700;
+  font-family: Calibri;
   padding: 10px 30px;
   height: 45px;
   border-radius: 23px;
@@ -65,4 +102,31 @@ body {
   &.btn-primary {
     background-color: $primary-color;
   }
+}
+
+// Flex
+.d-flex {
+  display: flex;
+}
+
+//Spacing
+.m-0 {
+  margin: 0;
+}
+
+.mr-1 {
+  margin-right: 1rem;
+}
+
+h3 {
+  margin: 0;
+  line-height: 1.5;
+}
+
+//Card
+.card {
+  padding: 1.5rem;
+  background-color: $primary-color;
+  border-radius: 10px;
+  width: 100%;
 }

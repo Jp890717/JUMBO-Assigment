@@ -1,11 +1,13 @@
-<div class="row">
-  <div class="col">
-    <button class="btn btn-primary">Show Stores</button>
+<div class="container">
+  <div class="col-12">
+    <app-button class="mr-1" (click)="showStores = true; showCities = false" [btnClass]="'btn-primary'" [buttonText]="'Show Stores'"></app-button>
+    <app-button class="mr-1" (click)="showCities = true; showStores = false" [btnClass]="'btn-primary'" [buttonText]="'Show Cities'"></app-button>
   </div>
+
+  <div class="col-12">
+    <input class="filter" type="text" [(ngModel)]="searchString" (input)="onInput($event)" />
+  </div>
+  <app-card *ngIf="showStores" class="col-12" [stores]="searchString === '' ? storeList : filteredStores"></app-card>
+  <app-card *ngIf="showCities" class="col-12" [cities]="searchString === '' ? cityList : filteredCities"></app-card>
 </div>
-
-
-
-
-<!--<pre>{{storeList | json}}</pre>-->
 

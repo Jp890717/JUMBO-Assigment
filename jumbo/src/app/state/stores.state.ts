@@ -1,37 +1,62 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import {StoreList} from "../models/stores";
-import {tap} from "rxjs";
-import {StoreService} from "../services/store.service";
+import {Cities, StoreList} from "../models/stores";
+import {Injectable} from "@angular/core";
+
+export class AddStores {
+  static readonly type = '[StoreList] Add';
+  constructor(public payload: StoreList[]) {}
+}
+
+export class AddCity {
+  static readonly type = '[City] Add';
+  constructor(public payload: string) {}
+}
 
 export interface StoreStateModel {
   stores: StoreList[];
 }
 
-export class AddStores {
-  static readonly type = '[Store] Add Store';
-  constructor(public payload: StoreList[]) {}
+export interface CityStateModel {
+  city: string;
 }
 
 @State<StoreStateModel>({
   name: 'store',
-  defaults: {
-    stores: []
-  }
 })
-export class StoreState {
 
-  constructor() {}
+@State<CityStateModel>({
+  name: 'city',
+})
+
+@Injectable()
+
+export class StoreState {
 
   @Selector()
   static getStores(state: StoreStateModel) {
     return state.stores;
   }
 
+  @Selector()
+  static getCity(state: CityStateModel) {
+    return state.city;
+  }
+
   @Action(AddStores)
   addStores({ getState, patchState }: StateContext<StoreStateModel>, { payload }: AddStores) {
-    const stores = getState().stores;
+    const state = getState();
     patchState({
-      stores: [...stores, ...payload]
+      ...state,
+      stores: payload
+    });
+  }
+
+  @Action(AddCity)
+  addCity({ getState, patchState }: StateContext<CityStateModel>, { payload }: AddCity) {
+    const state = getState();
+    patchState({
+      ...state,
+      city: payload
     });
   }
 

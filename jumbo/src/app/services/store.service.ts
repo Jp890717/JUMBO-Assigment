@@ -3,8 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {StoreList} from "../models/stores";
-import {Store} from "@ngxs/store";
 import {AddStores} from "../state/stores.state";
+import {Store} from "@ngxs/store";
 
 
 @Injectable({
