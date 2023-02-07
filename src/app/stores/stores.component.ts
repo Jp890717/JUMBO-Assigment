@@ -4,7 +4,6 @@ import {AddStores} from "../state/stores.state";
 import {Cities, StoreList} from "../models/stores";
 import {debounceTime, Subject} from "rxjs";
 import {Store} from "@ngxs/store";
-import {ActivatedRoute, Router} from "@angular/router";
 import { Location } from '@angular/common';
 
 
@@ -15,18 +14,14 @@ import { Location } from '@angular/common';
 })
 export class StoresComponent implements OnInit {
 
+  private inputSubject = new Subject<string>();
   storeList: StoreList[] = [];
   cityList: Cities[] = [];
   loading: boolean = true;
   showStores: boolean = true;
   showCities: boolean = false;
-  filteredStores: StoreList[] = [];
-  filteredCities: Cities[] = [];
-  speed = 2;
-
-
-  private inputSubject = new Subject<string>();
-  public searchString = '';
+  searchString: string = '';
+  errorMessage: string = '';
 
   constructor(private storeService: StoreService, private store: Store, private location: Location) {
   }
@@ -49,16 +44,22 @@ export class StoresComponent implements OnInit {
 
   private getStores() {
     this.loading = true;
-    this.storeService.getStores().subscribe((res:StoreList[]) => {
-      // Saving Store list to the state
-      this.store.dispatch(new AddStores(res));
-      this.storeList = res;
 
-      // Removing duplicates from cityList and filtering out stores where city in empty string
-      this.cityList = [...new Set(this.storeList.map(city => city.city).filter(city => city !== ''))].map(city => ({ city }));
-      this.loading = false
-    }, error => {
-      this.loading = false;
+    this.storeService.getStores().subscribe({
+      next: (res:StoreList[]) => {
+        this.store.dispatch(new AddStores(res));
+        this.storeList = res;
+
+        // Removing duplicates from cityList and filtering out stores where city in empty string
+        this.cityList = [...new Set(this.storeList.map(city => city.city).filter(city => city !== ''))].map(city => ({ city }));
+      },
+      error: (error) => {
+        this.errorMessage = 'Store data could not be retrieved at this moment'
+        this.loading = false
+      },
+      complete: () => {
+        this.loading = false
+      }
     })
   }
 
