@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="col-12">
+  <div class="col-12 d-flex">
     <app-button class="mr-1" (click)="showStores = true; showCities = false" [btnClass]="'btn-primary'" [buttonText]="'Show Stores'"></app-button>
-    <app-button class="mr-1" (click)="showCities = true; showStores = false" [btnClass]="'btn-primary'" [buttonText]="'Show Cities'"></app-button>
+    <app-button (click)="showCities = true; showStores = false" [btnClass]="'btn-primary'" [buttonText]="'Show Cities'"></app-button>
   </div>
 
   <div class="col-12" *ngIf="showStores || showCities">
