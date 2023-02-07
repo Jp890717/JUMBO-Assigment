@@ -33,13 +33,10 @@ export class StoresComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit (){
     const params = this.activatedRoute.snapshot.queryParams;
-
-    this.activatedRoute.queryParams.subscribe((params) => {
-      if (Object.keys(params).length > 0) {
-        this.showCities = params['showCities'] === 'true';
-        this.showStores = params['showStores'] !== 'false';
-      }
-    })
+    if (Object.keys(params).length > 0) {
+      this.showCities = params['showCities'] === 'true';
+      this.showStores = params['showStores'] !== 'false';
+    }
   }
 
   private getStores() {

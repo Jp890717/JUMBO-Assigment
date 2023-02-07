@@ -5,6 +5,9 @@ import {RouterTestingModule} from "@angular/router/testing";
 import {AddCity, StoreState} from "../../state/stores.state";
 import {Router} from "@angular/router";
 import {storeListTestData} from "../../test-data/store-data";
+import {FilterStorePipe} from "../../pipes/filter-store.pipe";
+import {FilterCitiesPipe} from "../../pipes/filter-cities.pipe";
+import {citiesTestData} from "../../test-data/cities";
 
 describe('CardComponent', () => {
   let component: CardComponent;
@@ -13,19 +16,7 @@ describe('CardComponent', () => {
   let router: Router;
 
   const stores = storeListTestData;
-
-  const cities = [
-    {
-    "city": "Aalsmeer"
-    }, {
-      "city": "Aalst"
-    }, {
-      "city": "Aalten"
-    }, {
-      "city": "Aardenburg"
-    }, {
-      "city": "Alkmaar"
-    }]
+  const cities = citiesTestData;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,7 +24,10 @@ describe('CardComponent', () => {
         RouterTestingModule,
         NgxsModule.forRoot([StoreState])
       ],
-      declarations: [ CardComponent ]
+      declarations: [
+        CardComponent,
+        FilterStorePipe,
+        FilterCitiesPipe ]
     })
     .compileComponents();
 

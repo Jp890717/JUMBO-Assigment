@@ -19,11 +19,18 @@ export class CityStoresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(StoreState.getCity).subscribe(city => this.cityName = city);
+    this.getCityName()
+    this.getStores();
+  }
 
-    this.store.select(StoreState.getStores).subscribe((stores:StoreList[]) => {
-      this.stores = stores.filter(item => item.city === this.cityName);
-    })
+  getCityName(){
+    const city = this.store.selectSnapshot(StoreState.getCity);
+    if (city !== undefined) this.cityName = city
+  }
+
+  getStores(){
+    const stores = this.store.selectSnapshot(StoreState.getStores);
+    if (stores !== undefined) this.stores = stores.filter(item => item.city === this.cityName);
   }
 
   back() {
