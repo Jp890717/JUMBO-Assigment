@@ -8,6 +8,7 @@ import {NgxsModule} from "@ngxs/store";
 import {NgxsStoragePluginModule, StorageOption} from '@ngxs/storage-plugin';
 import {StoreState} from "./state/stores.state";
 import { CityStoresComponent } from './components/city-stores/city-stores.component';
+import {StoresModule} from "./stores/stores.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CityStoresComponent } from './components/city-stores/city-stores.compon
     NgxsStoragePluginModule.forRoot({
       key: [StoreState],
       storage: StorageOption.LocalStorage
-    })
+    }),
+    StoresModule
   ],
   providers: [],
   bootstrap: [AppComponent]
