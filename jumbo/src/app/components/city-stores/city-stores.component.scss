@@ -1,2 +1,20 @@
-@import "../../../styles";
+@import "src/scss/variables";
 
+//Card
+.card {
+  padding: 1.5rem;
+  background-color: $white;
+  border-radius: 10px;
+  border: 2px solid rgba(0,0,0,.1);
+  width: 100%;
+
+  p {
+    color: $grey;
+  }
+
+  &.card-city {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
