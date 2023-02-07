@@ -13,23 +13,15 @@ export class CardComponent implements OnInit {
 
   @Input() stores: StoreList[] = [];
   @Input() cities: Cities[] = [];
+  @Input() searchString: string = '';
 
-  constructor(private store: Store, private router: Router) {
-  }
+  constructor(private store: Store, private router: Router) {}
 
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   showStores(city: string){
-    let navigationExtras: NavigationExtras = {
-      state: {
-        city: city
-      }
-    };
     this.store.dispatch(new AddCity(city));
-    this.router.navigate(['/city-stores'], navigationExtras)
+    this.router.navigate(['/city-stores'])
   }
 
 }
