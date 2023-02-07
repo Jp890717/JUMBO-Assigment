@@ -4,10 +4,21 @@
     <app-button class="mr-1" (click)="showCities = true; showStores = false" [btnClass]="'btn-primary'" [buttonText]="'Show Cities'"></app-button>
   </div>
 
-  <div class="col-12">
-    <input class="filter" type="text" [(ngModel)]="searchString" (input)="onInput($event)" />
+  <div class="col-12" *ngIf="showStores || showCities">
+    <h1>{{showStores ? 'Jumbo Stores' : 'City with stores'}}</h1>
+    <input [placeholder]="showStores ? 'Filter stores' : 'Filter cities'" class="filter" type="text" [(ngModel)]="searchString" (input)="onInput($event)" />
   </div>
-  <app-card *ngIf="showStores" class="col-12" [stores]="searchString === '' ? storeList : filteredStores"></app-card>
-  <app-card *ngIf="showCities" class="col-12" [cities]="searchString === '' ? cityList : filteredCities"></app-card>
-</div>
 
+
+  <ng-container *ngIf="loading">
+    <div class="col-12 d-flex justify-content-center mt-1">
+      <span class="loader"></span>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!loading">
+    <app-card *ngIf="showStores" class="col-12" [searchString]="searchString" [stores]="storeList"></app-card>
+    <app-card *ngIf="showCities" class="col-12" [searchString]="searchString" [cities]="cityList"></app-card>
+  </ng-container>
+
+</div>
