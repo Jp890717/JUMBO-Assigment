@@ -1,8 +1,8 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {StoreService} from "../services/store.service";
 import {AddStores} from "../state/stores.state";
 import {Cities, StoreList} from "../models/stores";
-import {Subject} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {Store} from "@ngxs/store";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -12,9 +12,10 @@ import {ActivatedRoute, Router} from "@angular/router";
   templateUrl: './stores.component.html',
   styleUrls: ['./stores.component.scss']
 })
-export class StoresComponent implements OnInit, AfterContentInit {
+export class StoresComponent implements OnInit, AfterContentInit, OnDestroy {
 
   inputSubject = new Subject<string>();
+  private unsubscribe$ = new Subject<void>();
   storeList: StoreList[] = [];
   cityList: Cities[] = [];
   loading: boolean = true;
@@ -41,8 +42,7 @@ export class StoresComponent implements OnInit, AfterContentInit {
 
   private getStores() {
     this.loading = true;
-
-    this.storeService.getStores().subscribe({
+    this.storeService.getStores().pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: (res:StoreList[]) => {
         this.store.dispatch(new AddStores(res));
         this.storeList = res;
@@ -62,6 +62,11 @@ export class StoresComponent implements OnInit, AfterContentInit {
 
   onInput(event: any) {
     this.searchString = event.target.value;
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }
