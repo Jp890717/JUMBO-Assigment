@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {StoreService} from "../services/store.service";
 import {AddStores} from "../state/stores.state";
 import {Cities, StoreList} from "../models/stores";
-import {debounceTime, Subject} from "rxjs";
+import {Subject} from "rxjs";
 import {Store} from "@ngxs/store";
-import { Location } from '@angular/common';
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 @Component({
@@ -12,9 +12,9 @@ import { Location } from '@angular/common';
   templateUrl: './stores.component.html',
   styleUrls: ['./stores.component.scss']
 })
-export class StoresComponent implements OnInit {
+export class StoresComponent implements OnInit, AfterContentInit {
 
-  private inputSubject = new Subject<string>();
+  inputSubject = new Subject<string>();
   storeList: StoreList[] = [];
   cityList: Cities[] = [];
   loading: boolean = true;
@@ -23,24 +23,24 @@ export class StoresComponent implements OnInit {
   searchString: string = '';
   errorMessage: string = '';
 
-  constructor(private storeService: StoreService, private store: Store, private location: Location) {
+  constructor(private storeService: StoreService, private store: Store, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
     this.getStores();
-    // Filter stores and Cities on search string
-    this.inputSubject.pipe(debounceTime(200)).subscribe(query => {
-      this.searchString = query;
-    });
-
-    //Getting navigation state from city-stores to set showCities to true
-    const navigation: any = this.location.getState();
-    if (navigation.cities !== undefined) {
-      this.showCities = navigation.cities;
-      this.showStores = false;
-    }
+    this.router.navigate([], { queryParams: {} });
   }
 
+  ngAfterContentInit (){
+    const params = this.activatedRoute.snapshot.queryParams;
+
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (Object.keys(params).length > 0) {
+        this.showCities = params['showCities'] === 'true';
+        this.showStores = params['showStores'] !== 'false';
+      }
+    })
+  }
 
   private getStores() {
     this.loading = true;
@@ -64,8 +64,7 @@ export class StoresComponent implements OnInit {
   }
 
   onInput(event: any) {
-    const query = event.target.value;
-    this.inputSubject.next(query);
+    this.searchString = event.target.value;
   }
 
 }

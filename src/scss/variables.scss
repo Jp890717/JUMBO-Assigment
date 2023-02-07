@@ -16,6 +16,10 @@ $danger: #dc3545;
   justify-content: center;
 }
 
+.align-item-center {
+  align-items: center;
+}
+
 //Spacing
 .m-0 {
   margin: 0;
@@ -27,6 +31,13 @@ $danger: #dc3545;
 
 .mt-1 {
   margin-top: 1rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+.mr-auto {
+  margin-right: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -28,8 +28,9 @@ export class CityStoresComponent implements OnInit {
 
   back() {
     let navigationExtras: NavigationExtras = {
-      state: {
-        cities: true
+      queryParams: {
+        showCities: true,
+        showStores: false
       }
     };
     this.router.navigate(['/stores'], navigationExtras)

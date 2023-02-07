@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Cities, StoreList} from "../../models/stores";
 import {Store} from "@ngxs/store";
 import {AddCity, StoreState} from "../../state/stores.state";
-import {Router, NavigationExtras } from "@angular/router";
+import {Router } from "@angular/router";
 
 @Component({
   selector: 'app-card',
