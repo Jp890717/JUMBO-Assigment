@@ -1,1 +1,7 @@
-<button class="btn {{btnClass}}">{{buttonText}}</button>
+<button *ngIf="btnClass === 'btn-primary'" class="btn {{btnClass}}">{{buttonText}}</button>
+
+<button *ngIf="btnClass === 'btn-secondary'" class="btn {{btnClass}}">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <path fill="currentColor" fill-rule="evenodd" d="M6.884.406l6.052 6.736c.01.011.013.023.02.034a1.2 1.2 0 0 1 .205.335c.008.02.012.038.018.058.044.126.07.256.07.388l.001.003v.001l-.001.002c0 .132-.026.263-.07.39-.006.019-.01.038-.018.056a1.18 1.18 0 0 1-.205.336c-.007.01-.01.023-.02.034l-6.052 6.736a1.224 1.224 0 1 1-1.82-1.636l5.317-5.918-5.317-5.919A1.224 1.224 0 1 1 6.884.406"></path>
+  </svg>
+</button>

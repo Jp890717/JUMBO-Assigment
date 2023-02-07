@@ -1,0 +1,37 @@
+@import "src/scss/variables";
+
+.btn {
+  font-weight: 700;
+  font-family: Calibri;
+  padding: 10px 30px;
+  height: 45px;
+  border-radius: 23px;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1),opacity .35s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: $base-font-size;
+  border: none;
+  touch-action: manipulation;
+
+  &:hover {
+    transform: scaleY(1.02) scaleX(1.04);
+    cursor: pointer;
+  }
+
+  &.btn-primary {
+    background-color: $primary-color;
+  }
+
+  &.btn-secondary {
+    padding: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: $primary-color;
+  }
+}
