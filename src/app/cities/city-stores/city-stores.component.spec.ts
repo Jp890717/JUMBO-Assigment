@@ -59,7 +59,7 @@ describe('CityStoresComponent', () => {
     expect(component.storeList).toEqual(storeListTestData);
   });
 
-  it('should navigate to "/stores" with query parameters "showCities" set to true and "showStores" set to false', () => {
+  it('should navigate to "/stores" with query parameters "showCities" set to true', () => {
     component.back();
     expect(router.navigate).toHaveBeenCalledWith(['/stores'], {
       queryParams: {
