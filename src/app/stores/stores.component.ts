@@ -36,7 +36,7 @@ export class StoresComponent implements OnInit, AfterContentInit, OnDestroy {
     const params = this.activatedRoute.snapshot.queryParams;
     if (Object.keys(params).length > 0) {
       this.showCities = params['showCities'] === 'true';
-      this.showStores = params['showStores'] !== 'false';
+      this.showStores = false;
     }
   }
 

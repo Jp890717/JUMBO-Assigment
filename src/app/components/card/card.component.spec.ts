@@ -50,7 +50,7 @@ describe('CardComponent', () => {
     component.showStores('Amsterdam');
     store.dispatch(new AddCity('Amsterdam'));
     expect(store.dispatch).toHaveBeenCalledWith(new AddCity('Amsterdam'));
-    expect(router.navigate).toHaveBeenCalledWith(['/city-stores']);
+    expect(router.navigate).toHaveBeenCalledWith(['/cities']);
   });
 
   it('should set stores input property', () => {

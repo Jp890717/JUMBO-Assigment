@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {StoresComponent} from "./stores.component";
+import {CityStoresComponent} from "./city-stores/city-stores.component";
 
 const routes: Routes = [
   {
-    path: 'stores',
-    component: StoresComponent
+    path: 'cities',
+    component: CityStoresComponent
   },{
     path: '',
-    redirectTo: 'stores',
+    redirectTo: 'cities',
     pathMatch: 'full'
   }
 ];
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class StoresRoutingModule { }
+export class CitiesRoutingModule { }

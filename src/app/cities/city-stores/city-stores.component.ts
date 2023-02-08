@@ -12,7 +12,7 @@ import {NavigationExtras, Router} from "@angular/router";
 export class CityStoresComponent implements OnInit {
 
   cityName: string = '';
-  stores: StoreList[] =[];
+  storeList: StoreList[] =[];
 
   constructor(private store:Store, private router: Router) {
 
@@ -30,14 +30,13 @@ export class CityStoresComponent implements OnInit {
 
   getStores(){
     const stores = this.store.selectSnapshot(StoreState.getStores);
-    if (stores !== undefined) this.stores = stores.filter(item => item.city === this.cityName);
+    if (stores !== undefined) this.storeList = stores.filter(item => item.city === this.cityName);
   }
 
   back() {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        showCities: true,
-        showStores: false
+        showCities: true
       }
     };
     this.router.navigate(['/stores'], navigationExtras)

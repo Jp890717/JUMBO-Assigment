@@ -4,8 +4,8 @@ import {NgxsModule, Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {StoreState} from "../../state/stores.state";
-import {ButtonComponent} from "../button/button.component";
 import {storeListTestData} from "../../test-data/store-data";
+import {ButtonComponent} from "../../components/button/button.component";
 
 describe('CityStoresComponent', () => {
   let component: CityStoresComponent;
@@ -56,15 +56,14 @@ describe('CityStoresComponent', () => {
     const component = new CityStoresComponent(store, router);
     component.cityName = 'Amsterdam';
     component.getStores();
-    expect(component.stores).toEqual(storeListTestData);
+    expect(component.storeList).toEqual(storeListTestData);
   });
 
   it('should navigate to "/stores" with query parameters "showCities" set to true and "showStores" set to false', () => {
     component.back();
     expect(router.navigate).toHaveBeenCalledWith(['/stores'], {
       queryParams: {
-        showCities: true,
-        showStores: false
+        showCities: true
       }
     });
   });

@@ -72,17 +72,6 @@ describe('StoresComponent', () => {
     activatedRoute.snapshot.queryParams = { showCities: 'true' };
     component.ngAfterContentInit();
     expect(component.showCities).toBeTruthy();
-  });
-
-  it('should set showStores to true if showStores query parameter is not set to "false"', () => {
-    activatedRoute.snapshot.queryParams = { showStores: 'true' };
-    component.ngAfterContentInit();
-    expect(component.showStores).toBeTruthy();
-  });
-
-  it('should set showStores to false if showStores query parameter is set to "false"', () => {
-    activatedRoute.snapshot.queryParams = { showStores: 'false' };
-    component.ngAfterContentInit();
     expect(component.showStores).toBeFalsy();
   });
 });

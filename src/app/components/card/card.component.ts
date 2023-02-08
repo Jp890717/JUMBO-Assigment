@@ -21,7 +21,7 @@ export class CardComponent implements OnInit {
 
   showStores(city: string){
     this.store.dispatch(new AddCity(city));
-    this.router.navigate(['/city-stores'])
+    this.router.navigate(['/cities'])
   }
 
 }

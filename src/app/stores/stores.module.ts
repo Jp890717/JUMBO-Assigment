@@ -18,7 +18,8 @@ import {FilterCitiesPipe} from "../pipes/filter-cities.pipe";
     FilterCitiesPipe
   ],
   exports: [
-    ButtonComponent
+    ButtonComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

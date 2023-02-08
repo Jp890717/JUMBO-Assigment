@@ -7,13 +7,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {NgxsModule} from "@ngxs/store";
 import {NgxsStoragePluginModule, StorageOption} from '@ngxs/storage-plugin';
 import {StoreState} from "./state/stores.state";
-import { CityStoresComponent } from './components/city-stores/city-stores.component';
-import {StoresModule} from "./stores/stores.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CityStoresComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +21,6 @@ import {StoresModule} from "./stores/stores.module";
       key: [StoreState],
       storage: StorageOption.LocalStorage
     }),
-    StoresModule
   ],
   providers: [],
   bootstrap: [AppComponent]
