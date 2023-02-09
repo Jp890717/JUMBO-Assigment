@@ -8,7 +8,7 @@ import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {of} from "rxjs";
 import {ButtonComponent} from "../components/button/button.component";
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute, Router, RouterModule} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CardComponent} from "../components/card/card.component";
 import {RouterTestingModule} from "@angular/router/testing";
 
